@@ -6,51 +6,51 @@ Magic numbers in CSS refer to values which "work" under some circumstances but a
 
 Look at this simple set of tabs:
 
-![][]
+![Tabs1][Simple set of tabs]
 
 Each of the tabs is set to `width: 100px;`. In this example `100px` is our "magic number." There are any number of things that can go wrong with this. Simply adding another tab with longer text demonstrates that:
 
-![][]
+![Tabs2][Another tab with a longer name demonstrates the disadvantages of fixed width]
 
 A bit awkward and likely undesirable. We could prevent the wrapping with `white-space: nowrap;` but that's possibly worse:
 
-![][]
+![Tabs3][The effect of white-space: nowrap]
 
 Our tabs would be less prone to breakage if we use min-width instead:
 
-![][]
+![Tabs4][The look of the tabs with min-width set]
 
 Or perhaps no width at all:
 
-![][]
+![Tabs5][The look of the tabs with no width set]
 
 If you were dead-set on having all the tabs the same size, you could do `overflow: hidden;` and `text-overflow: ellipsis;` perhaps:
 
-![][]
+![Tabs6][The effect of overflow: hidden; and text-overflow: ellipsis;]
 
 In that case, you'd probably want a `title` attribute so there is some way to reveal the entire tab name. You might think this could be solved from the Content Management System side by only allowing tab names to be a certain number of characters long. But what about users who increase font-size from their end for accessibility reasons? This fixed sizing might be hurting them.
 
 In a recent post [Line-On-Sides Headers][2], I used a line-height value that was a magic number. Let's say you used the technique around text with a fancy @font-face font. Let's say that font doesn't load or the user overrides it or the page is being viewed in a browser that don't support @font-face. The fallback font will load, and that fallback font might have drastically different sizing than the custom font. The lines on the outside of the fallback font are now awkwardly placed, not centered like we wanted. Magic number fail.
 
-![][]
+![Fonts][Comparison of the Line-On-Sides technique applied to different fonts]
 
 [This particular example][3] is a bit contrived, but I'm sure you've all seen custom fonts that have super crazy x-heights and stuff.
 
 Let's say you have a bunch of boxes with different amounts of content in them. You want to arrange them into a grid, so you float them left. Kind of a mess:
 
-![][]
+![Blocks1][Blocks with different height when floated left]
 
 Well hey if they were all the same height this wouldn't be a problem!
 
-![][]
+![Blocks2][Blocks with fixed height when floated left]
 
 That is, if the user viewing the site has the exact same font-size setting as you. But users can change that.
 
-![][]
+![Chrome][Font settings in Chrome]
 
 And now a big sad trombone:
 
-![][]
+![Blocks3][The text that doesn't fit in the containing block with fixed height overlaps other blocks]
 
 [min-height][4] instead would prevent the overlapping weirdness, but then the boxes are of different size and the float problem happens again. I'm not going to go too far into solutions because this is so abstract already, but perhaps you could use scrolling on the boxes, or use some JavaScript to adjust sizes, or user some other kind of layout.
 
@@ -62,19 +62,19 @@ Harry Roberts points out a classic example of a magic number in his article [Cod
       left: 0;
     }
 
-This would be for a CSS powered dropdown menu. The menu is hidden off-screen until the parent list item is hovered, then the dropdown moves into view. It should be placed at the bottom of the parent menu item. For the developer that wrote this code, in their current browser, that menu item was 37px tall. I'm sure you can imagine that isn't always true. 37px is a magic number. Harry suggests top: 100% instead meaning "all the way from the top," which is far less prone to breakage.
+This would be for a CSS powered dropdown menu. The menu is hidden off-screen until the parent list item is hovered, then the dropdown moves into view. It should be placed at the bottom of the parent menu item. For the developer that wrote this code, in their current browser, that menu item was 37px tall. I'm sure you can imagine that isn't always true. 37px is a magic number. Harry suggests `top: 100%` instead meaning "all the way from the top," which is far less prone to breakage.
 
 In the article [Fighting the Space Between Inline-Block Elements][6], -4px is a number quoted for margin that can close those gaps. That is definitely a magic number. 4px just happens to the width of a space in a good number of fonts at the default 16px `font-size`.
 
 Change that `font-family` to something like Monaco? Broken. Change the font-size to anything larger or smaller? Broken.
 
-![][]
+![Breakage][The technique of applying -4px as margin value to fight the space between inline-block elements fails when font-family or font size is changed]
 
 See [that article][7] for other fixes.
 
 ## Definition Confusion
 
-Because we're trying to say "don't use these," it is important we we define the term properly as it relates to CSS. I've seen a number of threads in the past where not everyone is on the same page. [(1)][8] [(2)][9] [(3)][10].
+Because we're trying to say "don't use these," it is important we define the term properly as it relates to CSS. I've seen a number of threads in the past where not everyone is on the same page. [(1)][8] [(2)][9] [(3)][10].
 
 Here's some examples:
 
@@ -143,3 +143,15 @@ Man I hate this section of blog posts but it's nice to have a little dumping gro
 [11]: http://make.wordpress.org/core/handbook/coding-standards/css/#best-practices
 [12]: http://css-tricks.com/what-is-vertical-align/
 
+[Simple set of tabs]: img/tabs-1.png?raw=true&amp;repo=magic-numbers-in-css
+[Another tab with a longer name demonstrates the disadvantages of fixed width]: img/tabs-2.png?raw=true&amp;repo=magic-numbers-in-css
+[The effect of white-space: nowrap]: img/tabs-3.png?raw=true&amp;repo=magic-numbers-in-css
+[The look of the tabs with min-width set]: img/tabs-4.png?raw=true&amp;repo=magic-numbers-in-css
+[The look of the tabs with no width set]: img/tabs-5.png?raw=true&amp;repo=magic-numbers-in-css
+[The effect of overflow: hidden; and text-overflow: ellipsis;]: img/tabs-6.png?raw=true&amp;repo=magic-numbers-in-css
+[Comparison of the Line-On-Sides technique applied to different fonts]: img/custom-font-magic-number.png?raw=true&amp;repo=magic-numbers-in-css
+[Blocks with different height when floated left]: img/grid-mess.png?raw=true&amp;repo=magic-numbers-in-css
+[Blocks with fixed height when floated left]: img/Screen-Shot-2013-04-22-at-8.19.55-AM.png?raw=true&amp;repo=magic-numbers-in-css
+[Font settings in Chrome]: img/chrome-font-size.png?raw=true&amp;repo=magic-numbers-in-css
+[The text that doesn't fit in the containing block with fixed height overlaps other blocks]: img/Screen-Shot-2013-04-22-at-8.22.34-AM.png?raw=true&amp;repo=magic-numbers-in-css
+[The technique of applying -4px as margin value to fight the space between inline-block elements fails when font-family or font size is changed]: img/inline-block.png?raw=true&amp;repo=magic-numbers-in-css
