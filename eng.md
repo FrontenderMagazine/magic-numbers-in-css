@@ -78,13 +78,13 @@ Because we're trying to say "don't use these," it is important we we define the 
 
 Here's some examples:
 
-    **CSS**
+**CSS**
 
     -webkit-transform: translateZ(0);
 
 Magic number? Nah. Just a little hack we used to use for performance.
 
-    **CSS**
+**CSS**
 
     .parent {
       padding: 22px;
@@ -96,13 +96,13 @@ Magic number? Nah. Just a little hack we used to use for performance.
 
 Magic number? Nah. It's a weird number but it's not magic. The child element is being positioned to the bottom left corner of an element, sans-padding. Because those numbers match up, it makes sense what is going on. If the were all different, that would mean there is likely little tweaky bits going on related to `font-size` and it would be a magic number.
 
-    **CSS**
+**CSS**
 
     top: 37px;
 
 Let's say this is a magic number, like from the dropdown menu example above. Can was solve it with Sass?
 
-    **SCSS**
+**SCSS**
 
     $topDistance: 37px;
 
@@ -112,7 +112,7 @@ Let's say this is a magic number, like from the dropdown menu example above. Can
 
 It's no longer an "unnamed" numerical constant right, because we named it? It's still a magic number in CSS. It's just as fragile as it was before.
 
-    **CSS**
+**CSS**
 
     letter-spacing: -.05em;
 
@@ -128,7 +128,7 @@ Man I hate this section of blog posts but it's nice to have a little dumping gro
 
 * I'd like to keep this blog post updated with good examples of magic number fails, so if you have any classics, comment below.
 
-* What if you are trying to center an image and text. [vertical-align][] does pretty good, but I find it's often 1px off or so so I `postion: relative; top: 1px;` it. Is that a magic number? Not sure.
+* What if you are trying to center an image and text. [vertical-align][12] does pretty good, but I find it's often 1px off or so so I `postion: relative; top: 1px;` it. Is that a magic number? Not sure.
 
 [1]: http://en.wikipedia.org/wiki/Magic_number_%28programming%29#Unnamed_numerical_constants
 [2]: http://css-tricks.com/line-on-sides-headers/
